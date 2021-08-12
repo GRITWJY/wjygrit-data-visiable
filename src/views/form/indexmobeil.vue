@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     请输入订单号:
-    <el-select v-model="trackinput" placeholder="测试中:请选择" @change="findata">
+    <el-select v-model="trackinput" placeholder="测试中:请选择" size="small" @change="findata">
       <el-option
         v-for="item in inputs"
         :key="item"
@@ -18,16 +18,16 @@
 <!--      class="trackinput"/>-->
     <div class="sanhuobox">
       <div style="margin: 10px 0 10px 10px">
-        <span style="font-weight: bolder">散货名称:{{goodsInfo.name}}</span>
-        <span style="float: right; min-width: 200px ">订单号: {{goodsInfo.Id}}</span>
+        <span style="font-weight: bolder;">散货名称:{{goodsInfo.name}}</span>
+        <span style="float: right; min-width: 160px ">订单号: {{goodsInfo.Id}}</span>
       </div>
       <div style="margin: 20px 0 10px 10px">
         <span style="font-weight: bolder">途径港口: {{goodsInfo.port}}</span>
-        <span style="float: right; min-width: 180px">货代:{{goodsInfo.huodai}} </span>
+        <span style="float: right; min-width: 160px">货代:{{goodsInfo.huodai}} </span>
       </div>
     </div>
 
-    <el-steps :active="stepcount" style="margin-top: 70px;">
+    <el-steps :active="stepcount" style="margin-top: 20px;">
       <el-step class="stepbox" v-for="goodstep in stepdata" :key="goodstep.index">
         <template slot="description">
           <div class="title">{{goodstep.steptitle}}时间:  {{goodstep.time}}</div>
@@ -37,8 +37,8 @@
             <p class="info-info">编号/航次: {{goodstep.number}}</p>
           </div>
           <div class="info2" v-else>
-            <el-col style="width: 250px; height: 100%;">
-              <img :src=goodstep.imgsrc  style="height: 100%; width: 100%">
+            <el-col style="max-width: 60%; max-height: 100%;">
+              <img :src=goodstep.imgsrc  style="max-height: 100%; max-width: 100%">
             </el-col>
             <el-col class="info2-txtinfo">
               <p class="title1">操作人员: {{goodstep.people}}</p>
@@ -51,45 +51,46 @@
       </el-step>
 
 
-<!--      <el-step class="stepbox">-->
-<!--        <template slot="description">-->
-<!--          <div class="title">入港时间:  2021-04-14 11:00</div>-->
-<!--          <div class="info">-->
-<!--            <span class="infotitle">入港</span>-->
-<!--            <div class="info-info">进场类型: </div>-->
-<!--            <p class="info-info">编号/航次: </p>-->
-<!--          </div>-->
-<!--        </template>-->
-<!--      </el-step>-->
-<!--      <el-step class="stepbox">-->
-<!--        <template slot="description">-->
-<!--          <div class="title">装货开始时间: 2021-048594</div>-->
-<!--          <div class="info2">-->
-<!--            <el-col style="width: 250px; height: 100%;">-->
-<!--              <img src="../../assets/404_images/404.png" style="width: 100%">-->
-<!--            </el-col>-->
-<!--            <el-col class="info2-txtinfo">-->
-<!--              <p class="title1">操作人员: 张三</p>-->
-<!--              <p class="title2">备注:-->
-<!--              <span class="txt">张三张三张三张三</span>-->
-<!--              </p>-->
-<!--            </el-col>-->
-<!--          </div>-->
-<!--        </template>-->
-<!--      </el-step>-->
-<!--      <el-step  style="width: 450px">-->
-<!--        <template slot="description">-->
-<!--          <div style="text-align:right">开始时间: 2021098594</div>-->
-<!--          <div style="width: 350px; margin-left: 100px; height: 10px; background-color: #99a9bf;"></div>-->
-<!--        </template>-->
-<!--      </el-step>-->
-<!--      <el-step title="步骤 4" style="width: 450px"></el-step>-->
-<!--      <el-step title="步骤 4" style="width: 450px"></el-step>-->
+      <!--      <el-step class="stepbox">-->
+      <!--        <template slot="description">-->
+      <!--          <div class="title">入港时间:  2021-04-14 11:00</div>-->
+      <!--          <div class="info">-->
+      <!--            <span class="infotitle">入港</span>-->
+      <!--            <div class="info-info">进场类型: </div>-->
+      <!--            <p class="info-info">编号/航次: </p>-->
+      <!--          </div>-->
+      <!--        </template>-->
+      <!--      </el-step>-->
+      <!--      <el-step class="stepbox">-->
+      <!--        <template slot="description">-->
+      <!--          <div class="title">装货开始时间: 2021-048594</div>-->
+      <!--          <div class="info2">-->
+      <!--            <el-col style="width: 250px; height: 100%;">-->
+      <!--              <img src="../../assets/404_images/404.png" style="width: 100%">-->
+      <!--            </el-col>-->
+      <!--            <el-col class="info2-txtinfo">-->
+      <!--              <p class="title1">操作人员: 张三</p>-->
+      <!--              <p class="title2">备注:-->
+      <!--              <span class="txt">张三张三张三张三</span>-->
+      <!--              </p>-->
+      <!--            </el-col>-->
+      <!--          </div>-->
+      <!--        </template>-->
+      <!--      </el-step>-->
+      <!--      <el-step  style="width: 450px">-->
+      <!--        <template slot="description">-->
+      <!--          <div style="text-align:right">开始时间: 2021098594</div>-->
+      <!--          <div style="width: 350px; margin-left: 100px; height: 10px; background-color: #99a9bf;"></div>-->
+      <!--        </template>-->
+      <!--      </el-step>-->
+      <!--      <el-step title="步骤 4" style="width: 450px"></el-step>-->
+      <!--      <el-step title="步骤 4" style="width: 450px"></el-step>-->
     </el-steps>
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -192,8 +193,8 @@ export default {
   },
   mounted() {
     if (this._isMobile()) {
-      this.$router.push({path:'/form/indexmobeil'})
     } else {
+      this.$router.push({path:'/form/index'})
     }
   },
   methods: {
@@ -220,16 +221,15 @@ export default {
           this.goodsInfo = this.goodsInfo1
           break
         default:
-            break
+          break
       }
 
     },
   },
   created() {
     console.log()
-   this.stepcount = this.stepdata.length
+    this.stepcount = this.stepdata.length
   }
-
 }
 </script>
 
@@ -247,19 +247,17 @@ export default {
   max-width: none !important;
 }
 .sanhuobox{
-  width: 400px;
   padding: 10px;
+  margin:  20px 10px 0 10px;
   min-height: 100px;
   background-color: blue;
   border-radius: 25px;
-  z-index: 1004;
-  top: 10px;
-  right: 3%;
-  position: absolute;
+  position: relative;
 
   span{
     color: white;
     font-weight: 700;
+    font-size: 14px;
   }
   .sanhuotxt{
     width: 100%;
@@ -270,7 +268,8 @@ export default {
   }
 }
 .stepbox{
-  width: 450px;
+  max-width: 450px;
+  width: 90%;
   margin-bottom: 30px;
   .title{
     color: black;
@@ -281,7 +280,7 @@ export default {
     white-space:pre;
   }
   .info{
-    width:380px;
+    max-width:380px;
     height: 100px;
     background-color: white;
     border: 1px solid #99a9bf;
@@ -299,13 +298,11 @@ export default {
     }
   }
   .info2{
-    width: 380px;
+    width: 350px;
     height: 150px;
     background-color: white;
-    border: 1px solid #99a9bf;
-    border-radius: 15px;
     .info2-txtinfo{
-      width: 128px;
+      max-width: 128px;
       height: 100%;
       background-color: blue;
       border-top-right-radius: 15px;
@@ -320,7 +317,7 @@ export default {
         font-weight: bolder;
         font-size: 16px;
         word-wrap: break-word;
-        min-width: 130px;
+        max-width: 130px;
         .txt{
           font-weight: normal;font-size: 15px;
         }
